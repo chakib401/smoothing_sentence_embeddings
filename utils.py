@@ -3,6 +3,12 @@ import torch
 
 
 def normalize_adj(adj, lmbda=1):
+    # the normalization proposed in Chakib Fettal, Lazhar Labiod, 
+    # and Mohamed Nadif. 2022. Efficient Graph Convolution for Joint 
+    # Node Representation Learning and Clustering. In Proceedings of 
+    # the Fifteenth ACM International Conference on Web Search and 
+    # Data Mining (WSDM '22).
+    
     adj = adj + lmbda * sp.eye(adj.shape[0])
     rowsum = np.array(adj.sum(1))
     r_inv = np.power(rowsum, -1).flatten()
